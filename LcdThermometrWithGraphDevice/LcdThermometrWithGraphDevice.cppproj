@@ -296,5 +296,16 @@
     <Folder Include="Simulation" />
     <Folder Include="OneWireCommon" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Layout\SimpleLcdTermometer.lay">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Layout\WithClockVersion.lay">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="Simulation\oneWire1.DSN">
+      <SubType>compile</SubType>
+    </None>
+  </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
