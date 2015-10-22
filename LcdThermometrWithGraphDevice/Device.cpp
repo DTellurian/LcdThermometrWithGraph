@@ -53,8 +53,8 @@ void Device::Initialize(void)
 	//
 	//_delay_ms(2000);
 	
-	pinD1.SetAsOutput();
-	pinD1.SetHightLevel();
+	pinD0.SetAsOutput();
+	pinD0.SetHightLevel();
 	
 	OWI_Init(BUS);
 	
