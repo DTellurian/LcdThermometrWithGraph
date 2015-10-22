@@ -1,0 +1,24 @@
+Bill of materials:
+SMD version (0603): 
+
+Корпус 
+20-33
+20-13 (208) 70х45х18
+
+R1  200 Ом
+R2 4.7 KOm
+R3 Резик на Reset 10КОм (можно и 20)
+C1 Конденсатор 100 нФ (104) х 2шт
+R4 2 KOm
+VR подстроечный резистор на 20 КОм
+Транзистор BC856
+
+Lcd: 
+WH0802A-TMI-CT 
+код товара: 40705
+http://www.rcscomponents.kiev.ua/product/WH0802A-TMI-CT.html
+
+
+SC0802AS*B-SH-HB
+код товара: 29021
+http://www.rcscomponents.kiev.ua/product/SC0802AS%2AB-SH-HB.html
