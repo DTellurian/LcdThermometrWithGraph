@@ -50,7 +50,6 @@ void Device::Initialize(void)
 	
 	lcd.LCD_Clear();
 	//lcd.LCD_SendString("Starting");
-	//
 	//_delay_ms(2000);
 	
 	pinD0.SetAsOutput();
