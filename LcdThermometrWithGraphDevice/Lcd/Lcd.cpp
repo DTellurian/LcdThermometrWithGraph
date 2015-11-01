@@ -9,17 +9,20 @@ using namespace LcdNamespace;
 #define SetBit(reg, bit)         reg |= (1<<(bit))	
 
 #define FLAG_BF 7
+//---------------------------------------------------------------------------
 
 Lcd::Lcd(void)
 {
 	
 }
+//---------------------------------------------------------------------------
 
 unsigned char __swap_nibbles(unsigned char data)
 {
   asm volatile("swap %0" : "=r" (data) : "0" (data));
   return data;
 }
+//---------------------------------------------------------------------------
 
 void Lcd::LCD_WriteComInit(unsigned char data)
 {
@@ -37,7 +40,7 @@ void Lcd::LCD_WriteComInit(unsigned char data)
   _delay_us(2);
   ClearBit(PORT_SIG, EN);	
 }
-
+//---------------------------------------------------------------------------
 
 void LCD_CommonFunc(unsigned char data)
 {
@@ -66,6 +69,7 @@ void LCD_CommonFunc(unsigned char data)
   ClearBit(PORT_SIG, EN);	//установка E в 0 - записывающий фронт
 #endif
 }
+//---------------------------------------------------------------------------
 
 void LCD_Wait(void)
 {
@@ -111,6 +115,7 @@ void LCD_Wait(void)
   _delay_us(40);
 #endif  
 }
+//---------------------------------------------------------------------------
 
 //функция записи команды 
 void Lcd::LCD_WriteCom(unsigned char data)
@@ -119,6 +124,7 @@ void Lcd::LCD_WriteCom(unsigned char data)
   ClearBit(PORT_SIG, RS);	//установка RS в 0 - команды
   LCD_CommonFunc(data);
 }
+//---------------------------------------------------------------------------
 
 //функция записи данных
 void Lcd::LCD_WriteData(unsigned char data)
@@ -127,6 +133,7 @@ void Lcd::LCD_WriteData(unsigned char data)
   SetBit(PORT_SIG, RS);	    //установка RS в 1 - данные
   LCD_CommonFunc(data);
 }
+//---------------------------------------------------------------------------
 
 //ooieoey eieoeaeecaoee
 void Lcd::LCD_Init(void)
@@ -168,7 +175,7 @@ void Lcd::LCD_Init(void)
   _delay_ms(2);
   LCD_WriteCom(0x06);  //0b00000110 - курсор движется вправо, сдвига нет
 }
-
+//---------------------------------------------------------------------------
 
 //функция вывода строки из флэш памяти
 void Lcd::LCD_SendStringFlash(char *str)
@@ -183,6 +190,7 @@ void Lcd::LCD_SendStringFlash(char *str)
     data = pgm_read_byte(str);
   }
 }
+//---------------------------------------------------------------------------
 
 //фунция вывода строки из RAM
 void Lcd::LCD_SendString(char *str)
@@ -213,10 +221,11 @@ void Lcd::LCD_SendString(char *str)
 	counter++;
   }
 }
-
+//---------------------------------------------------------------------------
 
 void Lcd::LCD_Clear(void)
 {
   LCD_WriteCom(0x01);
   _delay_ms(2);
 }
+//---------------------------------------------------------------------------
