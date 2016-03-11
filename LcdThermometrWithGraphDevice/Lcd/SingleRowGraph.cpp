@@ -3,6 +3,8 @@
  *
  * Created: 04.03.2015 11:31:10
  *  Author: Mihalych
+ * 11.03.2016 Shorstok
+ * Added option to draw more readable solid bar graph
  */ 
 //---------------------------------------------------------------------------
 
@@ -12,7 +14,8 @@
 //---------------------------------------------------------------------------
 
 SingleRowGraph::SingleRowGraph(LcdController* lcdControllerPtr, uint8_t x, uint8_t y, uint8_t width, uint8_t userSymbolStartIndex)
-	:BaseLcdControl(lcdControllerPtr, x, y, width, 1)
+	:BaseLcdControl(lcdControllerPtr, x, y, width, 1),
+	bDrawSolidGraph(false)	//default: draw classic dotted graph. Set to 'true' to draw fancy solid bars
 {
 	createdSymbolsValue = (uint8_t*)calloc(width * 5, sizeof(uint8_t));
 	this->userSymbolStartIndex = userSymbolStartIndex;
@@ -52,7 +55,10 @@ void SingleRowGraph::SetData(uint8_t* data)
 					createdSymbolsValue[currentDataIndex] = data[currentDataIndex];
 				}
 				
-				if(7 - data[currentDataIndex] == rowCounter)//Для проверки прорисовки нижней строки
+				//Fill all pixels below temperature line
+				if(bDrawSolidGraph && 7 - data[currentDataIndex] <= rowCounter)
+					symbolData[rowCounter] |= 1 << (5 - 1 - columnCounter);	
+				else if(7 - data[currentDataIndex] == rowCounter)//Для проверки прорисовки нижней строки
 				//if(6 - data[currentDataIndex] == rowCounter)
 					symbolData[rowCounter] |= 1 << (5 - 1 - columnCounter);						
 			}
